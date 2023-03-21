@@ -1,7 +1,7 @@
 name: build
 run-name: Maven Build
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
@@ -15,5 +15,9 @@ jobs:
           java-version: '11'
           distribution: 'corretto'
           cache: maven
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.8.2
       - name: Build and test
         run: mvn clean verify
