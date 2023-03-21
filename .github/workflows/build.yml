@@ -1,0 +1,19 @@
+name: build
+run-name: Maven Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'corretto'
+          cache: maven
+      - name: Build and test
+        run: mvn clean verify

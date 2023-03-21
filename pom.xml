@@ -13,10 +13,20 @@
         <url>https://github.com/Wonno/tgaot</url>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/Wonno/tgaot</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
+        <plg.version.sortpom-maven-plugin>3.2.1</plg.version.sortpom-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -25,7 +35,7 @@
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${plg.version.sortpom-maven-plugin}</version>
                 <configuration>
                     <lineSeparator>\n</lineSeparator>
                     <encoding>${project.build.sourceEncoding}</encoding>
@@ -49,7 +59,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${plg.version.maven-enforcer-plugin}</version>
                 <executions>
                     <execution>
                         <goals>
