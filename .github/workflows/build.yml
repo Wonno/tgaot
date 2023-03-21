@@ -1,7 +1,16 @@
 name: build
 run-name: Maven Build
 
-on: [ push ]
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+      - review_requested
+    branches:
+      - main
 
 jobs:
   build:
