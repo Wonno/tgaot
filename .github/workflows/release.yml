@@ -40,7 +40,7 @@ jobs:
           build-helper:parse-version
           versions:set -DnewVersion=\${nextVersionPattern}
           scm:checkin -DpushChanges=false -Dmessage="Version \${nextVersionPattern}" -Dincludes="**/pom.xml"
-          scm:tag -DpushChanges=false -Dtag=\${nextVersionPattern}
+          scm:tag -Dbasedir=. -DpushChanges=false -Dtag=\${nextVersionPattern}
 
       - name: Build and deploy
         run: mvn clean deploy
