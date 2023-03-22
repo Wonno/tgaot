@@ -25,12 +25,53 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.minimum.version>3.8.1</maven.minimum.version>
+        <pkg.version.maven-scm>2.0.0</pkg.version.maven-scm>
+        <plg.version.build-helper-maven-plugin>3.3.0</plg.version.build-helper-maven-plugin>
         <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
         <plg.version.sortpom-maven-plugin>3.2.1</plg.version.sortpom-maven-plugin>
+        <plg.version.versions-maven-plugin>2.15.0</plg.version.versions-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${plg.version.build-helper-maven-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${plg.version.versions-maven-plugin}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>${pkg.version.maven-scm}</version>
+                    <configuration>
+                        <providerImplementations>
+                            <git>jgit</git>
+                        </providerImplementations>
+                        <includes>**/pom.xml</includes>
+                        <pushChanges>false</pushChanges>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-jgit</artifactId>
+                            <version>${pkg.version.maven-scm}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
@@ -66,6 +107,7 @@
                             <goal>enforce</goal>
                         </goals>
                         <configuration>
+                            <fail>true</fail>
                             <rules>
                                 <requireJavaVersion>
                                     <message>You are running an older version of Java.</message>
@@ -73,8 +115,8 @@
                                     <version>[${java.version},)</version>
                                 </requireJavaVersion>
                                 <requireMavenVersion>
-                                    <message>Minimum Maven version 3.8.1 is required.</message>
-                                    <version>[3.8.1,)</version>
+                                    <message>Minimum Maven version ${maven.minimum.version} is required.</message>
+                                    <version>[${maven.minimum.version},)</version>
                                 </requireMavenVersion>
                                 <requireReleaseDeps>
                                     <message>No Snapshots allowed for release!</message>

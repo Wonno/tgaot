@@ -1,0 +1,54 @@
+name: release
+run-name: Release package
+
+on:
+  workflow_dispatch:
+    branches:
+      - 'main'
+    inputs:
+      bump:
+        type: choice
+        description: Choose Release version Bump
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'corretto'
+          cache: maven
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.8.2
+
+      - name: Set next ${{ inputs.bump }} version
+        run: mvn --settings .mvn\settings.xml --activate-profiles ${{ inputs.bump }}Release \
+          build-helper:parse-version \
+          versions:set -DnewVersion=${nextVersionPattern} \
+          scm:checkin -DpushChanges=false -Dmessage="Version ${nextVersionPattern}" -Dincludes="**/pom.xml" \
+          scm:tag -DpushChanges=false -Dtag=${nextVersionPattern}
+
+      - name: Build and deploy
+        run: mvn clean deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push Version
+        run: mvn scm:checkin -DpushChanges=true
+
+    env:
+      VERSIONING_DISABLE: true
+
