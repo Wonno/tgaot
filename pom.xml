@@ -21,6 +21,13 @@
         </repository>
     </distributionManagement>
 
+    <licenses>
+        <license>
+            <name>Public Domain</name>
+            <url>LICENSE.md</url>
+        </license>
+    </licenses>
+
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
