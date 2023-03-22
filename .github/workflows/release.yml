@@ -35,7 +35,7 @@ jobs:
           maven-version: 3.8.2
 
       - name: Set next ${{ inputs.bump }} version
-        run: mvn --settings .mvn\settings.xml --activate-profiles ${{ inputs.bump }}Release \
+        run: mvn --settings .mvn/settings.xml --activate-profiles ${{ inputs.bump }}Release \
           build-helper:parse-version \
           versions:set -DnewVersion=${nextVersionPattern} \
           scm:checkin -DpushChanges=false -Dmessage="Version ${nextVersionPattern}" -Dincludes="**/pom.xml" \
