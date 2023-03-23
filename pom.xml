@@ -65,7 +65,6 @@
                         <providerImplementations>
                             <git>jgit</git>
                         </providerImplementations>
-                        <includes>**/pom.xml</includes>
                         <pushChanges>false</pushChanges>
                     </configuration>
                     <dependencies>
