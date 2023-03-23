@@ -56,8 +56,8 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: ${{ github.head_ref }}
-        env:
-          INPUT_TAGS: true
+          tags: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
     env:
       VERSIONING_DISABLE: true
