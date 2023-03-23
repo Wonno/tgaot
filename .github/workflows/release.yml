@@ -40,7 +40,9 @@ jobs:
           build-helper:parse-version
           versions:set -DnewVersion=\${nextVersionPattern}
           scm:checkin -DpushChanges=false -Dmessage="Version \${nextVersionPattern}" -Dincludes="**/pom.xml"
-          help:evaluate -Dexpression=project.version -Doutput=target/version.txt
+
+      - name: Store tag
+        run: mvn help:evaluate -Dexpression=project.version -Doutput=target/version.txt
 
       - name: Set tag
         run: releaseversion=$(<"target/version.txt"); mvn scm:tag -DpushChanges=false -Dtag=${releaseversion}
@@ -51,7 +53,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Version
-        run: mvn scm:checkin -DpushChanges=true
+        run: mvn scm:checkin -DpushChanges=true -Dmessage="tagging"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     env:
       VERSIONING_DISABLE: true
