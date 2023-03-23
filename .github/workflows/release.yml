@@ -40,7 +40,10 @@ jobs:
           build-helper:parse-version
           versions:set -DnewVersion=\${nextVersionPattern}
           scm:checkin -DpushChanges=false -Dmessage="Version \${nextVersionPattern}" -Dincludes="**/pom.xml"
-          scm:tag -Dbasedir=. -DpushChanges=false -Dtag=\${nextVersionPattern}
+          help:evaluate -Dexpression=project.version -Doutput=target/version.txt
+
+      - name: Set tag
+        run: releaseversion=$(<"target/version.txt"); mvn scm:tag -DpushChanges=false -Dtag=${releaseversion}
 
       - name: Build and deploy
         run: mvn clean deploy
