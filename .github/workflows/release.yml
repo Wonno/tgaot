@@ -59,6 +59,14 @@ jobs:
           tags: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create Release With Asset
+        uses: Hs1r1us/Release-AIO@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          asset_files: './target/*.jar'
+
     env:
       VERSIONING_DISABLE: true
 
