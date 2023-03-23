@@ -6,6 +6,13 @@
     <artifactId>cli-app</artifactId>
     <version>0.1.0</version>
 
+    <licenses>
+        <license>
+            <name>Public Domain</name>
+            <url>LICENSE.md</url>
+        </license>
+    </licenses>
+
     <scm>
         <connection>scm:git:https://github.com/Wonno/tgaot.git</connection>
         <developerConnection>scm:git:https://github.com/Wonno/tgaot.git</developerConnection>
@@ -21,13 +28,6 @@
         </repository>
     </distributionManagement>
 
-    <licenses>
-        <license>
-            <name>Public Domain</name>
-            <url>LICENSE.md</url>
-        </license>
-    </licenses>
-
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -40,6 +40,19 @@
         <plg.version.versions-maven-plugin>2.15.0</plg.version.versions-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/wonno/tgaot</url>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
@@ -134,6 +147,7 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
 
 </project>
