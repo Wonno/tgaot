@@ -68,8 +68,14 @@ jobs:
         with:
           assets: |
             - path: 'target/*.jar'
-              label: binary
-
+          reactions: +1,laugh,hooray,heart,rocket,eyes
+          discussionCategory: Announcements
+          discussionReactions: +1,-1,laugh,hooray,confused,heart,rocket,eyes
+          generateReleaseNotes: true
+          releaseName: ${{ steps.version.outputs.RELEASE_VERSION }}
+          releaseBody: >
+            Release ${{ steps.version.outputs.RELEASE_VERSION }}
+          tagIsSemVer: true
 
     env:
       VERSIONING_DISABLE: true
