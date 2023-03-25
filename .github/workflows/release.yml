@@ -49,9 +49,7 @@ jobs:
         run:  echo "RELEASE_VERSION=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Set tag
-        run: |
-          echo Debug: _${{ steps.version.outputs.RELEASE_VERSION }}_
-          mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.RELEASE_VERSION }}
+        run:  mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.RELEASE_VERSION }}
 
       - name: Build and deploy
         run: mvn clean deploy
@@ -64,6 +62,9 @@ jobs:
           branch: ${{ github.ref }}
           tags: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release
+        uses: eloquent/github-release-action@v3
 
       - uses: AButler/upload-release-assets@v2.0
         with:
