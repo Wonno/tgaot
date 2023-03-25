@@ -49,7 +49,7 @@ jobs:
         run:  echo "RELEASE_VERSION=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Set tag
-        run:  mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.RELEASE_VERSION }}
+        run:  mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.RELEASE_VERSION }} -Dmessage="Release ${{ steps.version.outputs.RELEASE_VERSION }}"
 
       - name: Build and deploy
         run: mvn clean deploy
@@ -69,14 +69,11 @@ jobs:
           assets: |
             - path: 'target/*.jar'
           reactions: +1,laugh,hooray,heart,rocket,eyes
-          discussionCategory: Announcements
-          discussionReactions: +1,-1,laugh,hooray,confused,heart,rocket,eyes
+#          discussionCategory: Announcements
+#          discussionReactions: +1,-1,laugh,hooray,confused,heart,rocket,eyes
           generateReleaseNotes: true
-          releaseName: ${{ steps.version.outputs.RELEASE_VERSION }}
-          releaseBody: >
-            Release ${{ steps.version.outputs.RELEASE_VERSION }}
-          tagIsSemVer: true
+          summaryEnabled: true
 
     env:
-      VERSIONING_DISABLE: true
+      VERSIONING_DISABLE: "true"
 
