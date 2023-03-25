@@ -46,10 +46,12 @@ jobs:
 
       - name: Provide version
         id: version
-        run:  echo "releaseVersion=$(cat target/version.txt)" >> $GITHUB_OUTPUT
+        run:  echo "RELEASE_VERSION=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Set tag
-        run: mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.releaseVersion }}
+        run: |
+          echo Debug: _${{ steps.version.outputs.RELEASE_VERSION }}_
+          mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.RELEASE_VERSION }}
 
       - name: Build and deploy
         run: mvn clean deploy
@@ -67,7 +69,7 @@ jobs:
         with:
           files: 'target/*.jar'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ steps.version.outputs.releaseVersion }}
+          release-tag: ${{ steps.version.outputs.RELEASE_VERSION }}
 
     env:
       VERSIONING_DISABLE: true
