@@ -46,7 +46,7 @@ jobs:
 
       - name: Provide version
         id: version
-        run:  echo "releaseVersion=$(cat target/version.txt)"
+        run:  echo "releaseVersion=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Set tag
         run: mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.releaseVersion }}
