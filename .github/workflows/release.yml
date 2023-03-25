@@ -44,8 +44,12 @@ jobs:
       - name: Store tag
         run: mvn help:evaluate -Dexpression=project.version -Doutput=target/version.txt
 
+      - name: Provide version
+        id: version
+        run:  echo "releaseVersion=$(cat target/version.txt)"
+
       - name: Set tag
-        run: releaseversion=$(<"target/version.txt"); mvn scm:tag -DpushChanges=false -Dtag=${releaseversion}
+        run: mvn scm:tag -DpushChanges=false -Dtag=${{ steps.version.outputs.releaseVersion }}
 
       - name: Build and deploy
         run: mvn clean deploy
@@ -59,12 +63,11 @@ jobs:
           tags: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload the artifacts
-        uses: skx/github-action-publish-binaries@release-2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: AButler/upload-release-assets@v2.0
         with:
-          args: 'target/*.jar'
+          files: 'target/*.jar'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: ${{ steps.version.outputs.releaseVersion }}
 
     env:
       VERSIONING_DISABLE: true
