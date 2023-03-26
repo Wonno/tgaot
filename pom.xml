@@ -10,6 +10,8 @@
     <description>A application used as an example on how to build and release.</description>
     <url>https://github.com/Wonno/tgaot</url>
 
+    <inceptionYear>2023</inceptionYear>
+
     <licenses>
         <license>
             <name>Public Domain</name>
@@ -34,6 +36,16 @@
         <tag>HEAD</tag>
         <url>https://github.com/Wonno/tgaot</url>
     </scm>
+
+    <issueManagement>
+        <system>Github-Issues</system>
+        <url>https://github.com/Wonno/tgaot/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Github-Actions</system>
+        <url>https://github.com/Wonno/tgaot/actions</url>
+    </ciManagement>
 
     <distributionManagement>
         <repository>
@@ -372,7 +384,6 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <configuration>
                     <generateBackupPoms>false</generateBackupPoms>
-                    <excludesList>me.qoomon:maven-git-versioning-extension</excludesList>
                 </configuration>
             </plugin>
             <plugin>
@@ -572,7 +583,6 @@
                             <rulesUri>file:///${project.basedir}/.mvn/rules.xml</rulesUri>
                             <processParent>false</processParent>
                             <processDependencyManagement>false</processDependencyManagement>
-                            <excludesList>me.qoomon:maven-git-versioning-extension</excludesList>
                         </configuration>
                         <executions>
                             <execution>

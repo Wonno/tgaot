@@ -12,6 +12,8 @@ end_of_line = lf
 [*.{bat,cmd,ps1}]
 end_of_line = crlf
 
+[pom.xml]
+indent_size = 4
 
 
 [*.md]
