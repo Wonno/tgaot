@@ -149,9 +149,11 @@
                     <version>${plg.version.maven-checkstyle-plugin}</version>
                     <configuration>
                         <!-- <configLocation>checkstyle.xml</configLocation>-->
+                        <configLocation>google_checks.xml</configLocation>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>false</failsOnError>
                         <linkXRef>false</linkXRef>
+                        <failOnViolation>false</failOnViolation>
                     </configuration>
                 </plugin>
                 <plugin>

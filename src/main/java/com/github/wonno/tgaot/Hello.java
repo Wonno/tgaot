@@ -2,26 +2,22 @@ package com.github.wonno.tgaot;
 
 class Hello {
 
-    /**
-     * The Greeting.
-     */
-    private final String greet;
+  /** The Greeting. */
+  private final String greet;
 
-    Hello(final String greeting) {
-        this.greet = greeting;
-    }
+  Hello(final String greeting) {
+    this.greet = greeting;
+  }
 
+  // FIXME: Greeting via CLI param
+  public static void main(final String[] args) {
+    final Hello hello = new Hello("World");
+    // NICETOHAVE: TEST checking sout
+    System.out.println(hello.getMessage());
+  }
 
-    //FIXME: Greeting via CLI param
-     public static void main(final String[] args) {
-        final Hello hello = new Hello("World");
-        //NICETOHAVE: TEST checking sout
-        System.out.println(hello.getMessage());
-    }
-
-    //TODO: no getter
-    String getMessage() {
-        return "Hello " + greet;
-    }
-
+  // TODO: no getter
+  String getMessage() {
+    return "Hello " + greet;
+  }
 }
