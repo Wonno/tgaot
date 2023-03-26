@@ -7,11 +7,15 @@ class Hello {
         this.greet = greet;
     }
 
-    public static void main(String[] args) {
+
+    //FIXME: Greeting via CLI param
+     public static void main(String[] args) {
         Hello hello = new Hello("World");
+        //NICETOHAVE: TEST checking sout
         System.out.println(hello.getMessage());
     }
 
+    //TODO: no getter
     String getMessage() {
         return "Hello " + greet;
     }

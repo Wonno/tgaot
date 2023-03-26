@@ -140,6 +140,54 @@
             <plugins>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>taglist-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <showEmptyDetails>true</showEmptyDetails>
+                        <tagListOptions>
+                            <tagClasses>
+                                <tagClass>
+                                    <displayName>TBD</displayName>
+                                    <tags>
+                                        <tag>
+                                            <matchString>TODO:</matchString>
+                                            <matchType>ignoreCase</matchType>
+                                        </tag>
+                                    </tags>
+                                </tagClass>
+                                <tagClass>
+                                    <displayName>As soon as possible</displayName>
+                                    <tags>
+                                        <tag>
+                                            <matchString>FIXME:</matchString>
+                                            <matchType>ignoreCase</matchType>
+                                        </tag>
+                                    </tags>
+                                </tagClass>
+                                <tagClass>
+                                    <displayName>Improvement</displayName>
+                                    <tags>
+                                        <tag>
+                                            <matchString>NICETOHAVE:</matchString>
+                                            <matchType>ignoreCase</matchType>
+                                        </tag>
+                                    </tags>
+                                </tagClass>
+                                <tagClass>
+                                    <displayName>Legacy</displayName>
+                                    <tags>
+                                        <tag>
+                                            <matchString>DEPREACTED:</matchString>
+                                            <matchType>ignoreCase</matchType>
+                                        </tag>
+                                    </tags>
+                                </tagClass>
+                            </tagClasses>
+                        </tagListOptions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>${plg.version.build-helper-maven-plugin}</version>
                 </plugin>
@@ -420,6 +468,15 @@
         </plugins>
 
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <profiles>
         <profile>
