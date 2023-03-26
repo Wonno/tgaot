@@ -55,6 +55,7 @@
         <plg.version.build-helper-maven-plugin>3.3.0</plg.version.build-helper-maven-plugin>
         <plg.version.flatten-maven-plugin>1.4.0</plg.version.flatten-maven-plugin>
         <plg.version.jacoco-maven-plugin>0.8.8</plg.version.jacoco-maven-plugin>
+        <plg.version.maven-checkstyle-plugin>3.2.1</plg.version.maven-checkstyle-plugin>
         <plg.version.maven-clean-plugin>3.2.0</plg.version.maven-clean-plugin>
         <plg.version.maven-compiler-plugin>3.11.0</plg.version.maven-compiler-plugin>
         <plg.version.maven-deploy-plugin>3.1.1</plg.version.maven-deploy-plugin>
@@ -142,6 +143,17 @@
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${plg.version.maven-checkstyle-plugin}</version>
+                    <configuration>
+                        <!-- <configLocation>checkstyle.xml</configLocation>-->
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>false</failsOnError>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
@@ -358,6 +370,7 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <configuration>
                     <generateBackupPoms>false</generateBackupPoms>
+                    <excludesList>me.qoomon:maven-git-versioning-extension</excludesList>
                 </configuration>
             </plugin>
             <plugin>
@@ -503,6 +516,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
     </build>
@@ -516,6 +542,17 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
