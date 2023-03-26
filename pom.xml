@@ -6,12 +6,27 @@
     <artifactId>cli-app</artifactId>
     <version>1.1.0</version>
 
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>A application used as an example on how to build and release.</description>
+    <url>https://github.com/Wonno/tgaot</url>
+
     <licenses>
         <license>
             <name>Public Domain</name>
             <url>LICENSE.md</url>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <name>Wonno</name>
+            <organization>Wonno</organization>
+            <organizationUrl>https://github.com/Wonno</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <scm>
         <connection>scm:git:https://github.com/Wonno/tgaot.git</connection>
@@ -29,17 +44,71 @@
     </distributionManagement>
 
     <properties>
+        <bom.version.junit-bom>5.9.2</bom.version.junit-bom>
         <java.version>11</java.version>
+        <lib.version.maven-surefire-junit5-tree-reporter>0.1.0</lib.version.maven-surefire-junit5-tree-reporter>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.minimum.version>3.8.1</maven.minimum.version>
         <pkg.version.maven-scm>2.0.0</pkg.version.maven-scm>
         <plg.version.build-helper-maven-plugin>3.3.0</plg.version.build-helper-maven-plugin>
+        <plg.version.flatten-maven-plugin>1.4.0</plg.version.flatten-maven-plugin>
+        <plg.version.jacoco-maven-plugin>0.8.8</plg.version.jacoco-maven-plugin>
+        <plg.version.maven-clean-plugin>3.2.0</plg.version.maven-clean-plugin>
+        <plg.version.maven-compiler-plugin>3.11.0</plg.version.maven-compiler-plugin>
+        <plg.version.maven-deploy-plugin>3.1.0</plg.version.maven-deploy-plugin>
         <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
+        <plg.version.maven-install-plugin>3.0.1</plg.version.maven-install-plugin>
+        <plg.version.maven-jar-plugin>3.3.0</plg.version.maven-jar-plugin>
+        <plg.version.maven-resources-plugin>3.3.0</plg.version.maven-resources-plugin>
+        <plg.version.maven-site-plugin>3.12.0</plg.version.maven-site-plugin>
+        <plg.version.maven-source-plugin>2.2.1</plg.version.maven-source-plugin>
+        <plg.version.maven-surefire-plugin>3.0.0-M3</plg.version.maven-surefire-plugin>
         <plg.version.sortpom-maven-plugin>3.2.1</plg.version.sortpom-maven-plugin>
         <plg.version.versions-maven-plugin>2.15.0</plg.version.versions-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <plg.version.maven-project-info-reports-plugin>3.4.1</plg.version.maven-project-info-reports-plugin>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${bom.version.junit-bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>
@@ -55,6 +124,17 @@
     </repositories>
 
     <build>
+
+        <resources>
+            <resource>
+                <targetPath>META-INF</targetPath>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+            </resource>
+        </resources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -66,9 +146,6 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${plg.version.versions-maven-plugin}</version>
-                    <configuration>
-                        <generateBackupPoms>false</generateBackupPoms>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -88,10 +165,167 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${plg.version.maven-site-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plg.version.maven-resources-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plg.version.maven-compiler-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${plg.version.maven-surefire-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${plg.version.maven-clean-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${plg.version.maven-install-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${plg.version.maven-deploy-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>${plg.version.maven-project-info-reports-plugin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${plg.version.jacoco-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.50</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <reportFormat>plain</reportFormat>
+                    <consoleOutputReporter>
+                        <disable>true</disable>
+                    </consoleOutputReporter>
+                    <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter"/>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>me.fabriciorby</groupId>
+                        <artifactId>maven-surefire-junit5-tree-reporter</artifactId>
+                        <version>${lib.version.maven-surefire-junit5-tree-reporter}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${plg.version.maven-jar-plugin}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.github.wonno.tgaot.Hello</mainClass>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
+                            <useUniqueVersions>true</useUniqueVersions>
+                        </manifest>
+                        <manifestEntries>
+                            <url>${project.url}</url>
+                        </manifestEntries>
+                        <index>true</index>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${plg.version.flatten-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <flattenMode>ossrh</flattenMode>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <pomElements>
+                                <repositories>flatten</repositories>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${plg.version.maven-source-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
@@ -106,6 +340,7 @@
                     <keepBlankLines>true</keepBlankLines>
                     <sortProperties>true</sortProperties>
                     <nrOfIndentSpace>4</nrOfIndentSpace>
+                    <expandEmptyElements>false</expandEmptyElements>
                 </configuration>
                 <executions>
                     <execution>
@@ -128,6 +363,11 @@
                         <configuration>
                             <fail>true</fail>
                             <rules>
+                                <requirePluginVersions/>
+                                <banDuplicatePomDependencyVersions/>
+                                <banDynamicVersions/>
+                                <dependencyConvergence/>
+                                <reactorModuleConvergence/>
                                 <requireJavaVersion>
                                     <message>You are running an older version of Java.</message>
                                     <message>At least JDK ${java.version} is required.</message>
