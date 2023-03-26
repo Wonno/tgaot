@@ -46,7 +46,7 @@
     <properties>
         <bom.version.junit-bom>5.9.2</bom.version.junit-bom>
         <java.version>11</java.version>
-        <lib.version.maven-surefire-junit5-tree-reporter>0.1.0</lib.version.maven-surefire-junit5-tree-reporter>
+        <lib.version.maven-surefire-junit5-tree-reporter>1.1.0</lib.version.maven-surefire-junit5-tree-reporter>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.minimum.version>3.8.1</maven.minimum.version>
@@ -56,18 +56,19 @@
         <plg.version.jacoco-maven-plugin>0.8.8</plg.version.jacoco-maven-plugin>
         <plg.version.maven-clean-plugin>3.2.0</plg.version.maven-clean-plugin>
         <plg.version.maven-compiler-plugin>3.11.0</plg.version.maven-compiler-plugin>
-        <plg.version.maven-deploy-plugin>3.1.0</plg.version.maven-deploy-plugin>
+        <plg.version.maven-deploy-plugin>3.1.1</plg.version.maven-deploy-plugin>
         <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
-        <plg.version.maven-install-plugin>3.0.1</plg.version.maven-install-plugin>
+        <plg.version.maven-gpg-plugin>3.0.1</plg.version.maven-gpg-plugin>
+        <plg.version.maven-install-plugin>3.1.1</plg.version.maven-install-plugin>
         <plg.version.maven-jar-plugin>3.3.0</plg.version.maven-jar-plugin>
-        <plg.version.maven-resources-plugin>3.3.0</plg.version.maven-resources-plugin>
-        <plg.version.maven-site-plugin>3.12.0</plg.version.maven-site-plugin>
-        <plg.version.maven-source-plugin>2.2.1</plg.version.maven-source-plugin>
+        <plg.version.maven-project-info-reports-plugin>3.4.2</plg.version.maven-project-info-reports-plugin>
+        <plg.version.maven-resources-plugin>3.3.1</plg.version.maven-resources-plugin>
+        <plg.version.maven-site-plugin>3.12.1</plg.version.maven-site-plugin>
+        <plg.version.maven-source-plugin>3.2.1</plg.version.maven-source-plugin>
         <plg.version.maven-surefire-plugin>3.0.0-M3</plg.version.maven-surefire-plugin>
         <plg.version.sortpom-maven-plugin>3.2.1</plg.version.sortpom-maven-plugin>
         <plg.version.versions-maven-plugin>2.15.0</plg.version.versions-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <plg.version.maven-project-info-reports-plugin>3.4.1</plg.version.maven-project-info-reports-plugin>
     </properties>
 
     <dependencyManagement>
@@ -288,6 +289,11 @@
                         </manifest>
                         <manifestEntries>
                             <url>${project.url}</url>
+                            <Build-Time>${maven.build.timestamp}</Build-Time>
+                            <Build-User>${user.name}</Build-User>
+                            <Build-Java>${java.version}</Build-Java>
+                            <Build-OS>${os.name}</Build-OS>
+                            <Build-Label>${project.version}</Build-Label>
                         </manifestEntries>
                         <index>true</index>
                     </archive>
@@ -353,6 +359,19 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${plg.version.maven-gpg-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>${plg.version.maven-enforcer-plugin}</version>
                 <executions>
@@ -363,7 +382,12 @@
                         <configuration>
                             <fail>true</fail>
                             <rules>
-                                <requirePluginVersions/>
+                                <requirePluginVersions>
+                                    <message>Set plugin versions in pluginManagement section.</message>
+                                    <banLatest>true</banLatest>
+                                    <banRelease>true</banRelease>
+                                    <banSnapshots>true</banSnapshots>
+                                </requirePluginVersions>
                                 <banDuplicatePomDependencyVersions/>
                                 <banDynamicVersions/>
                                 <dependencyConvergence/>
@@ -389,5 +413,43 @@
         </plugins>
 
     </build>
+
+    <profiles>
+        <profile>
+            <id>check-updates</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>versions-maven-plugin</artifactId>
+                        <version>${plg.version.versions-maven-plugin}</version>
+                        <configuration>
+                            <rulesUri>file:///${project.basedir}/.mvn/rules.xml</rulesUri>
+                            <processParent>false</processParent>
+                            <processDependencyManagement>false</processDependencyManagement>
+                            <excludesList>me.qoomon:maven-git-versioning-extension</excludesList>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>check-dependency-updates</id>
+                                <goals>
+                                    <goal>display-dependency-updates</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                            <execution>
+                                <id>check-plugin-updates</id>
+                                <goals>
+                                    <goal>display-plugin-updates</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>
