@@ -71,7 +71,7 @@
         <plg.version.maven-clean-plugin>3.2.0</plg.version.maven-clean-plugin>
         <plg.version.maven-compiler-plugin>3.11.0</plg.version.maven-compiler-plugin>
         <plg.version.maven-deploy-plugin>3.1.1</plg.version.maven-deploy-plugin>
-        <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
+        <plg.version.maven-enforcer-plugin>3.3.0</plg.version.maven-enforcer-plugin>
         <plg.version.maven-gpg-plugin>3.0.1</plg.version.maven-gpg-plugin>
         <plg.version.maven-install-plugin>3.1.1</plg.version.maven-install-plugin>
         <plg.version.maven-jar-plugin>3.3.0</plg.version.maven-jar-plugin>
