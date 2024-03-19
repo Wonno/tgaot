@@ -69,7 +69,7 @@
         <plg.version.jacoco-maven-plugin>0.8.11</plg.version.jacoco-maven-plugin>
         <plg.version.maven-checkstyle-plugin>3.3.1</plg.version.maven-checkstyle-plugin>
         <plg.version.maven-clean-plugin>3.3.2</plg.version.maven-clean-plugin>
-        <plg.version.maven-compiler-plugin>3.11.0</plg.version.maven-compiler-plugin>
+        <plg.version.maven-compiler-plugin>3.13.0</plg.version.maven-compiler-plugin>
         <plg.version.maven-deploy-plugin>3.1.1</plg.version.maven-deploy-plugin>
         <plg.version.maven-enforcer-plugin>3.4.1</plg.version.maven-enforcer-plugin>
         <plg.version.maven-gpg-plugin>3.1.0</plg.version.maven-gpg-plugin>
