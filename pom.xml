@@ -64,14 +64,14 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.minimum.version>3.8.1</maven.minimum.version>
         <pkg.version.maven-scm>2.0.1</pkg.version.maven-scm>
-        <plg.version.build-helper-maven-plugin>3.3.0</plg.version.build-helper-maven-plugin>
+        <plg.version.build-helper-maven-plugin>3.5.0</plg.version.build-helper-maven-plugin>
         <plg.version.flatten-maven-plugin>1.4.1</plg.version.flatten-maven-plugin>
         <plg.version.jacoco-maven-plugin>0.8.11</plg.version.jacoco-maven-plugin>
         <plg.version.maven-checkstyle-plugin>3.3.1</plg.version.maven-checkstyle-plugin>
-        <plg.version.maven-clean-plugin>3.2.0</plg.version.maven-clean-plugin>
+        <plg.version.maven-clean-plugin>3.3.2</plg.version.maven-clean-plugin>
         <plg.version.maven-compiler-plugin>3.12.1</plg.version.maven-compiler-plugin>
         <plg.version.maven-deploy-plugin>3.1.1</plg.version.maven-deploy-plugin>
-        <plg.version.maven-enforcer-plugin>3.2.1</plg.version.maven-enforcer-plugin>
+        <plg.version.maven-enforcer-plugin>3.4.1</plg.version.maven-enforcer-plugin>
         <plg.version.maven-gpg-plugin>3.1.0</plg.version.maven-gpg-plugin>
         <plg.version.maven-install-plugin>3.1.1</plg.version.maven-install-plugin>
         <plg.version.maven-jar-plugin>3.3.0</plg.version.maven-jar-plugin>
@@ -84,7 +84,7 @@
         <plg.version.spotbugs-maven-plugin>4.8.3.1</plg.version.spotbugs-maven-plugin>
         <plg.version.taglist-maven-plugin>3.0.0</plg.version.taglist-maven-plugin>
         <plg.version.versions-maven-plugin>2.15.0</plg.version.versions-maven-plugin>
-        <plg.versionspotbugs-maven-plugin>1.12.0</plg.versionspotbugs-maven-plugin>
+        <plg.versionspotbugs-maven-plugin>1.13.0</plg.versionspotbugs-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
