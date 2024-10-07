@@ -80,7 +80,7 @@
         <plg.version.maven-site-plugin>3.12.1</plg.version.maven-site-plugin>
         <plg.version.maven-source-plugin>3.3.1</plg.version.maven-source-plugin>
         <plg.version.maven-surefire-plugin>3.0.0-M3</plg.version.maven-surefire-plugin>
-        <plg.version.sortpom-maven-plugin>3.4.1</plg.version.sortpom-maven-plugin>
+        <plg.version.sortpom-maven-plugin>4.0.0</plg.version.sortpom-maven-plugin>
         <plg.version.spotbugs-maven-plugin>4.8.5.0</plg.version.spotbugs-maven-plugin>
         <plg.version.taglist-maven-plugin>3.1.0</plg.version.taglist-maven-plugin>
         <plg.version.versions-maven-plugin>2.16.2</plg.version.versions-maven-plugin>
