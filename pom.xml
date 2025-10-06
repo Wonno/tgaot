@@ -56,7 +56,7 @@
     </distributionManagement>
 
     <properties>
-        <bom.version.junit-bom>5.13.3</bom.version.junit-bom>
+        <bom.version.junit-bom>6.0.0</bom.version.junit-bom>
         <java.version>11</java.version>
         <lib.version.maven-surefire-junit5-tree-reporter>1.4.0</lib.version.maven-surefire-junit5-tree-reporter>
         <lib.version.spotbugs>4.9.3</lib.version.spotbugs>
