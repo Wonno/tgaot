@@ -83,7 +83,7 @@
         <plg.version.sortpom-maven-plugin>4.0.0</plg.version.sortpom-maven-plugin>
         <plg.version.spotbugs-maven-plugin>4.9.4.2</plg.version.spotbugs-maven-plugin>
         <plg.version.taglist-maven-plugin>3.2.1</plg.version.taglist-maven-plugin>
-        <plg.version.versions-maven-plugin>2.18.0</plg.version.versions-maven-plugin>
+        <plg.version.versions-maven-plugin>2.19.1</plg.version.versions-maven-plugin>
         <plg.versionspotbugs-maven-plugin>1.14.0</plg.versionspotbugs-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
