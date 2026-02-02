@@ -76,7 +76,7 @@
         <plg.version.maven-install-plugin>3.1.4</plg.version.maven-install-plugin>
         <plg.version.maven-jar-plugin>3.4.2</plg.version.maven-jar-plugin>
         <plg.version.maven-project-info-reports-plugin>3.9.0</plg.version.maven-project-info-reports-plugin>
-        <plg.version.maven-resources-plugin>3.3.1</plg.version.maven-resources-plugin>
+        <plg.version.maven-resources-plugin>3.4.0</plg.version.maven-resources-plugin>
         <plg.version.maven-site-plugin>3.21.0</plg.version.maven-site-plugin>
         <plg.version.maven-source-plugin>3.3.1</plg.version.maven-source-plugin>
         <plg.version.maven-surefire-plugin>3.0.0-M3</plg.version.maven-surefire-plugin>
