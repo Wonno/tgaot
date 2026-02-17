@@ -58,7 +58,7 @@
     <properties>
         <bom.version.junit-bom>5.13.3</bom.version.junit-bom>
         <java.version>11</java.version>
-        <lib.version.maven-surefire-junit5-tree-reporter>1.4.0</lib.version.maven-surefire-junit5-tree-reporter>
+        <lib.version.maven-surefire-junit5-tree-reporter>1.5.1</lib.version.maven-surefire-junit5-tree-reporter>
         <lib.version.spotbugs>4.9.8</lib.version.spotbugs>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -70,19 +70,19 @@
         <plg.version.maven-checkstyle-plugin>3.6.0</plg.version.maven-checkstyle-plugin>
         <plg.version.maven-clean-plugin>3.5.0</plg.version.maven-clean-plugin>
         <plg.version.maven-deploy-plugin>3.1.4</plg.version.maven-deploy-plugin>
-        <plg.version.maven-compiler-plugin>3.14.0</plg.version.maven-compiler-plugin>
+        <plg.version.maven-compiler-plugin>3.15.0</plg.version.maven-compiler-plugin>
         <plg.version.maven-enforcer-plugin>3.6.2</plg.version.maven-enforcer-plugin>
         <plg.version.maven-gpg-plugin>3.2.8</plg.version.maven-gpg-plugin>
         <plg.version.maven-install-plugin>3.1.4</plg.version.maven-install-plugin>
-        <plg.version.maven-jar-plugin>3.4.2</plg.version.maven-jar-plugin>
+        <plg.version.maven-jar-plugin>3.5.0</plg.version.maven-jar-plugin>
         <plg.version.maven-project-info-reports-plugin>3.9.0</plg.version.maven-project-info-reports-plugin>
-        <plg.version.maven-resources-plugin>3.3.1</plg.version.maven-resources-plugin>
+        <plg.version.maven-resources-plugin>3.4.0</plg.version.maven-resources-plugin>
         <plg.version.maven-site-plugin>3.21.0</plg.version.maven-site-plugin>
         <plg.version.maven-source-plugin>3.3.1</plg.version.maven-source-plugin>
         <plg.version.maven-surefire-plugin>3.0.0-M3</plg.version.maven-surefire-plugin>
         <plg.version.sortpom-maven-plugin>4.0.0</plg.version.sortpom-maven-plugin>
         <plg.version.spotbugs-maven-plugin>4.9.8.2</plg.version.spotbugs-maven-plugin>
-        <plg.version.taglist-maven-plugin>3.2.1</plg.version.taglist-maven-plugin>
+        <plg.version.taglist-maven-plugin>3.2.2</plg.version.taglist-maven-plugin>
         <plg.version.versions-maven-plugin>2.19.1</plg.version.versions-maven-plugin>
         <plg.versionspotbugs-maven-plugin>1.14.0</plg.versionspotbugs-maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
